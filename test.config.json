@@ -1,0 +1,21 @@
+{
+  "targets": [
+    {
+      "name": "staffmeup",
+      "loginUrl": "https://app.staffmeup.com/login",
+      "selectors": {
+        "usernameField": "input[name=\"email\"]",
+        "passwordField": "input[name=\"password\"]",
+        "submitButton": "button[type=\"submit\"]",
+        "successByCss": false,
+        "successByUrl": true,
+        "successValue": "https://app.staffmeup.com/jobs"
+      },
+      "credentials": {
+        "username": "jesse@mcfearsome.dev",
+        "password": "password"
+      },
+      "checkInterval": 300000
+    }
+  ]
+}

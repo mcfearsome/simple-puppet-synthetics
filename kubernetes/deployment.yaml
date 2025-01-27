@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: synthetic-monitor
+  labels:
+    app: synthetic-monitor
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: synthetic-monitor
+  template:
+    metadata:
+      labels:
+        app: synthetic-monitor
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "3000"
+        prometheus.io/path: "/metrics"
+    spec:
+      containers:
+      - name: synthetic-monitor
+        image: synthetic-monitor:latest
+        ports:
+        - containerPort: 3000
+        volumeMounts:
+        - name: config-volume
+          mountPath: /etc/synthetic-monitor
+          readOnly: true
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "200m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+      volumes:
+      - name: config-volume
+        secret:
+          secretName: synthetic-monitor-config
