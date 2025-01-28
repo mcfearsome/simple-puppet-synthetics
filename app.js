@@ -74,7 +74,7 @@ async function performLoginCheck(target) {
     });
 
     const browser = await puppeteer.launch({
-        headless: false,
+        headless: true,
         executablePath: process.env['PUPPETEER_EXECUTABLE_PATH'],
         args: [
           "--no-sandbox",
@@ -83,7 +83,6 @@ async function performLoginCheck(target) {
           "--disable-gpu"
         ],
     });
-    
     
     log('debug', 'Browser launched', { target: target.name });
 
